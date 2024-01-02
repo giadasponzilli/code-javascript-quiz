@@ -103,11 +103,12 @@ function questionsStart() {
         setTimeout(function() {
             questionElIndex++;
 
-            if (questionElIndex <= questions.length) {
+            if (questionElIndex < questions.length) {
             questionsStart();
             } else {
             finishQuiz();
             }
+            
         }, 1000);
         
         });
@@ -129,9 +130,18 @@ function feedbackMessage(text){
   // Form appears for user to enter their initials
   // Display their score
 
-  
-// function finishQuiz()
+function finishQuiz() {
+    clearInterval(timer)
 
+    questionsSection.style.display = "none"
+    feedbackText.style.display = "none"
+
+    const endScreen = document.querySelector("#end-screen");
+    endScreen.style.display = "block"
+
+    const finalScore = document.querySelector("#final-score");
+    finalScore.textContent = timeLeft;
+}
 
 // User submits form
   // Initials and score get stored in local storage
