@@ -51,7 +51,7 @@ let feedbackText = document.querySelector("#feedback");
 
 let questionElIndex = 0;
 
-let timeLeft = 60;
+let timeLeft = 75;
 let timer;
 
 startButton.addEventListener("click", startQuiz)
