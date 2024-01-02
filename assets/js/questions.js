@@ -108,7 +108,7 @@ function questionsStart() {
             } else {
             finishQuiz();
             }
-            
+
         }, 1000);
         
         });
