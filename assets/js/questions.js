@@ -6,29 +6,29 @@
 
 let questions = [
     {
-        question1: "Commonly used data types DO NOT include:",
-        answers1: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
-        correctAnswer1: 2,
+        question: "Commonly used data types DO NOT include:",
+        answer: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
+        correctAnswer: 2,
     },
     {
-        question2: "The condition in an if / else statement is enclosed within ____ .",
-        answers2: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
-        correctAnswer2: 2,
+        question: "The condition in an if / else statement is enclosed within ____ .",
+        answer: ["1. quotes", "2. curly brackets", "3. parentheses", "4. square brackets"],
+        correctAnswer: 2,
     },
     {
-        question3: "Arrays in JavaScript can be used to store ____ .",
-        answers3: ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
-        correctAnswer3: 3,
+        question: "Arrays in JavaScript can be used to store ____ .",
+        answer: ["1. numbers and strings", "2. other arrays", "3. booleans", "4. all of the above"],
+        correctAnswer: 3,
     },
     {
-        question4: "String values must be enclosed within ____ when being assigned to variables",
-        answers4: ["1. commas", "2. curly brackets", "3. quotes", "4. parentheses"],
-        correctAnswer4: 2,
+        question: "String values must be enclosed within ____ when being assigned to variables",
+        answer: ["1. commas", "2. curly brackets", "3. quotes", "4. parentheses"],
+        correctAnswer: 2,
     },
     {
-        question5: "A very useful tool used during development and the bugging for printing content to the bugger is:",
-        answers5: ["1. JavaScript", "2. terminal / bash", "3. for loops", "4. console log"],
-        correctAnswer5: 3,
+        question: "A very useful tool used during development and the bugging for printing content to the bugger is:",
+        answer: ["1. JavaScript", "2. terminal / bash", "3. for loops", "4. console log"],
+        correctAnswer: 3,
     },
 ]
 
@@ -42,6 +42,7 @@ let startButton = document.querySelector("#start");
 let questionsSection = document.querySelector("#questions");
 let questionTitle = document.querySelector("#question-title");
 let choicesSection = document.querySelector("#choices");
+
 
 // Click the start button:
   // Landing page goes away
@@ -69,11 +70,6 @@ function startQuiz () {
     questionsStart();
 }
 
-function questionsStart() {
-   
-}
-
-
 // For each question:
   // User clicks an answer
   // Their choice is compared to the correct answer as stored in the question's object
@@ -81,6 +77,42 @@ function questionsStart() {
   // If incorrect, tell them AND subtract time from the timer
   // Optional: play a sound for correct or incorrect
   // Either way, the question disappears after a few seconds and the next question appears
+
+function questionsStart() {
+
+    const questionEl = questions[questionEl.Index];
+    questionTitle.textContent = questionEl.question; 
+
+    choicesSection.innerHTML = "";
+
+    questionEl.answer.forEach(function (answer, index) {
+        let answersButton = document.createElement("button");
+        answersButton.textContent = answer;
+        
+        answersButton.addEventListener("click", function() {
+            if (index = questionEl.correctAnswer) {
+                feedbackMessage("Correct!");
+            } else {
+                feedbackMessage("Wrong!");
+                timeLeft - 10;
+            }
+
+        
+        }
+        )
+    });
+
+}
+
+
+function feedbackMessage(text){
+    let feedbackText = document.querySelector("#feedback");
+    feedbackText.textContent = text
+    feedbackText.style.display = "block"
+}
+
+
+
 
 // After the last question:
   // Timer stops
