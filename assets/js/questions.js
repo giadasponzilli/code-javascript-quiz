@@ -36,10 +36,43 @@ let questions = [
   // Explanation of the quiz
   // Start button
 
+let timeLeftDisplay = document.querySelector("#time");
+let landingPage = document.querySelector("#start-screen");
+let startButton = document.querySelector("#start");
+let questionsSection = document.querySelector("#questions");
+let questionTitle = document.querySelector("#question-title");
+let choicesSection = document.querySelector("#choices");
+
 // Click the start button:
   // Landing page goes away
   // Timer starts
   // The first question appears (with its answers)
+
+let timeLeft = 60;
+let timer;
+
+startButton.addEventListener("click", startQuiz)
+
+function startQuiz () {
+    
+    landingPage.style.display = "none"
+    questionsSection.style.display = "block"
+    
+    timer = setInterval(function() {
+        timeLeft--;
+        timeDisplay.textContent = timeLeft;
+        if (timeLeft <= 0) {
+            endQuiz();
+        }
+    }, 1000);
+    
+    questionsStart();
+}
+
+function questionsStart() {
+   
+}
+
 
 // For each question:
   // User clicks an answer
