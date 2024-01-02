@@ -1,1 +1,1 @@
-# code-javascript-quiz-giadasponzilli
+# code-javascript-quiz
