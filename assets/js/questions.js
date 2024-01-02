@@ -42,12 +42,14 @@ let startButton = document.querySelector("#start");
 let questionsSection = document.querySelector("#questions");
 let questionTitle = document.querySelector("#question-title");
 let choicesSection = document.querySelector("#choices");
-
+let feedbackText = document.querySelector("#feedback");
 
 // Click the start button:
   // Landing page goes away
   // Timer starts
   // The first question appears (with its answers)
+
+let questionElIndex = 0;
 
 let timeLeft = 60;
 let timer;
@@ -61,9 +63,9 @@ function startQuiz () {
     
     timer = setInterval(function() {
         timeLeft--;
-        timeDisplay.textContent = timeLeft;
+        timeLeftDisplay.textContent = timeLeft;
         if (timeLeft <= 0) {
-            endQuiz();
+            finishQuiz();
         }
     }, 1000);
     
@@ -80,45 +82,56 @@ function startQuiz () {
 
 function questionsStart() {
 
-    const questionEl = questions[questionEl.Index];
+    let questionEl = questions[questionElIndex];
     questionTitle.textContent = questionEl.question; 
 
     choicesSection.innerHTML = "";
+    feedbackText.textContent = "";
 
     questionEl.answer.forEach(function (answer, index) {
         let answersButton = document.createElement("button");
         answersButton.textContent = answer;
         
         answersButton.addEventListener("click", function() {
-            if (index = questionEl.correctAnswer) {
+            if (index === questionEl.correctAnswer) {
                 feedbackMessage("Correct!");
             } else {
                 feedbackMessage("Wrong!");
-                timeLeft - 10;
+                timeLeft -= 10;
             }
-
         
-        }
-        )
-    });
+        setTimeout(function() {
+            questionElIndex++;
 
+            if (questionElIndex <= questions.length) {
+            questionsStart();
+            } else {
+            finishQuiz();
+            }
+        }, 1000);
+        
+        });
+
+        choicesSection.appendChild(answersButton)
+
+    });
 }
 
 
 function feedbackMessage(text){
-    let feedbackText = document.querySelector("#feedback");
     feedbackText.textContent = text
     feedbackText.style.display = "block"
 }
-
-
-
 
 // After the last question:
   // Timer stops
   // Question disappears
   // Form appears for user to enter their initials
   // Display their score
+
+  
+// function finishQuiz()
+
 
 // User submits form
   // Initials and score get stored in local storage
