@@ -4,7 +4,7 @@
   // Set of answers
   // Which answer is correct
 
-let questions = [
+const questions = [
     {
         question: "Commonly used data types DO NOT include:",
         answer: ["1. strings", "2. booleans", "3. alerts", "4. numbers"],
@@ -36,13 +36,34 @@ let questions = [
   // Explanation of the quiz
   // Start button
 
-let timeLeftDisplay = document.querySelector("#time");
-let landingPage = document.querySelector("#start-screen");
-let startButton = document.querySelector("#start");
-let questionsSection = document.querySelector("#questions");
-let questionTitle = document.querySelector("#question-title");
-let choicesSection = document.querySelector("#choices");
-let feedbackText = document.querySelector("#feedback");
+const timeLeftDisplay = document.querySelector("#time");
+const landingPage = document.querySelector("#start-screen");
+const startButton = document.querySelector("#start");
+const questionsSection = document.querySelector("#questions");
+const questionTitle = document.querySelector("#question-title");
+const choicesSection = document.querySelector("#choices");
+const feedbackText = document.querySelector("#feedback");
+
+// Create the audio elements for correct and incorrect answers
+const correctAudioElement = document.createElement("audio");
+correctAudioElement.id = "incorrectSound";
+correctAudioElement.src = "assets/sfx/correct.wav";
+
+const incorrectAudioElement = document.createElement("audio");
+incorrectAudioElement.id = "incorrectSound";
+incorrectAudioElement.src = "assets/sfx/incorrect.wav";
+
+// Append the audio element to the document
+document.body.appendChild(correctAudioElement);
+document.body.appendChild(incorrectAudioElement);
+
+function playCorrectSound() {
+    correctAudioElement.play();
+}
+
+function playIncorrectSound() {
+    incorrectAudioElement.play();
+}
 
 // Click the start button:
   // Landing page goes away
@@ -95,9 +116,11 @@ function questionsStart() {
         answersButton.addEventListener("click", function() {
             if (index === questionEl.correctAnswer) {
                 feedbackMessage("Correct!");
+                playCorrectSound()
             } else {
                 feedbackMessage("Wrong!");
                 timeLeft -= 10;
+                playIncorrectSound()
             }
         
         setTimeout(function() {
