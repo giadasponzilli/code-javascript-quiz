@@ -141,10 +141,16 @@ function finishQuiz() {
 
     const finalScore = document.querySelector("#final-score");
     finalScore.textContent = timeLeft;
-}
 
-// User submits form
-  // Initials and score get stored in local storage
-  // User is taken to the high scores page
-  // High scores are listed, sorted highest to lowest
-  // User has option to take the quiz again
+    // Handle user click on button
+    const submitButton = document.querySelector("#submit");
+    const inputInitials = document.querySelector("#initials");
+
+    // Initials and score are saved in local Storage
+    submitButton.addEventListener("click", function () {
+        const inputInitialsValue = inputInitials.value;
+        localStorage.setItem(inputInitialsValue, timeLeft);
+        // Open a new page for highscores
+        window.location.href ="highscores.html";
+    });
+}
